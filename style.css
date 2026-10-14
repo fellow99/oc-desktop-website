@@ -631,6 +631,33 @@ html[data-theme="dark"] .icon-btn .i-moon {
   border-radius: calc(var(--radius-lg) - 1px);
 }
 
+/* Both screenshots live in the DOM; pure CSS shows exactly one per theme, so
+   the correct one appears even before JS runs (and with JS disabled).
+   Never swap these from JS — see README §4.3.
+   The `light` shot is the base (shown whenever dark is not in effect); the
+   `html:not([data-theme])` block covers the no-JS case, where <html> carries
+   no data-theme attribute at all. */
+.hero-shot img[data-shot] {
+  display: none;
+}
+.hero-shot img[data-shot="light"] {
+  display: block;
+}
+html[data-theme="dark"] .hero-shot img[data-shot="light"] {
+  display: none;
+}
+html[data-theme="dark"] .hero-shot img[data-shot="dark"] {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .hero-shot img[data-shot="light"] {
+    display: none;
+  }
+  html:not([data-theme]) .hero-shot img[data-shot="dark"] {
+    display: block;
+  }
+}
+
 .shot-caption {
   margin-top: 0.9rem;
   text-align: center;

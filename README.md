@@ -22,7 +22,7 @@
 | `style.css` | 共享样式表 —— 全部主题化走 CSS 自定义属性 |
 | `script.js` | 共享主题切换逻辑（语言中立，`data-label-*` 驱动） |
 | `images/logo.svg` | 品牌 logo（取自父工程 `../assets/logo.svg`），同时用作 favicon 与导航/页脚字标 |
-| `images/hero.png` | 首屏产品截图（真实界面，见 §2.3） |
+| `images/light.png` `images/dark.png` | 首屏产品截图对（浅色 / 深色，来自父工程 `../assets/screenshots/hos/`，见 §2.3） |
 
 ## 2. 定位与关键信息
 
@@ -50,12 +50,17 @@ HarmonyOS）、两张平台卡与平台免责声明里。
 
 ### 2.3 素材口径（hero 截图）
 
-- `images/hero.png` 由**上游 opencode 仓库内的官方真实截图**生成：
-  `../opencode/packages/web/src/assets/web/web-homepage-active-session.png`（2766×1970，Lanczos 缩放到 1600px 宽）。
-- 该图是 **opencode 官方 Web UI 的真实界面**，也就是 OC Desktop 实际渲染的那一层界面 —— 因此**不构成误导**；
-  页内 caption 明确标注「上游官方截图」。
-- 素材（截图与品牌）均来自 MIT 许可的上游仓库 / 父工程 `assets/`，**不使用任何第三方来源图片**。
-- 父工程 `../assets/screenshots/pc/` 目前为空，是**留给真机截图的位置**。补图后按 §8 的升级路径替换。
+- `images/light.png` / `images/dark.png` 由父工程的真机截图转录而来，**源文件是唯一事实来源**：
+  `../assets/screenshots/hos/1.png` → `images/light.png`（1280×720，浅色主题）、
+  `../assets/screenshots/hos/2.png` → `images/dark.png`（1280×720，深色主题）。
+- 转录只做**无损**处理：原图是 RGBA 但 alpha 全为 255（不透明），因此转成 RGB 重新编码 PNG
+  （约 27–29 KB），**不裁切、不缩放、不改内容**。
+- 画面内容是 **OC Desktop 鸿蒙版的真实界面**（已用 Windows OCR 逐字核对）：新建会话页的
+  「会话 / 随便问点什么、`/` 可查看命令、`@` 可添加上下文」输入区、模型 `DeepSeek V4 Flash`、
+  agent `Default`、工作区 `workspace`、git 状态「无 Git」。因此 caption 不含任何编造内容；
+  英文页额外标注「界面本身是简体中文」，避免英文读者误判。
+- **不写「实机 / 设备实拍」之类无法自证的措辞**：截图存放在 `assets/screenshots/hos/`，
+  只能确证「这是鸿蒙版的界面」，不能确证采集方式。
 
 ### 2.4 文案准确性护栏（长期有效）
 
@@ -81,7 +86,7 @@ HarmonyOS）、两张平台卡与平台免责声明里。
    胶囊语言切换（`EN / 中文`）· 主题切换。≤ 760px 隐藏锚点链接，品牌 + 语言 + 主题保留。
 2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede、`ul.os-strip`（4 枚系统 chip）、
    CTA 行（主：`OpenCode 官方下载` → 上游下载页；次：鸿蒙版源码 → 本工程仓库；ghost：了解实现）、
-   可信行（版本 / 上游基线 / 分发口径）；右列——带边框的截图「应用窗口」+ 等宽 caption。
+   可信行（版本 / 上游基线 / 分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption。
 3. **Features**（`#features`）：标题 + lede + 4 张图标卡（桌面 2×2，≤ 820px 单列）。
 4. **Platforms**（`#platforms`）：两张版本卡（标签 + 能力要点 + 链接），下方平台覆盖免责声明与
    鸿蒙版能力边界说明。
@@ -131,11 +136,24 @@ HarmonyOS）、两张平台卡与平台免责声明里。
 - 截图按「应用窗口」呈现：1px 细线边框、`--radius-lg`、分层静止阴影。**不做假窗口装饰**
   （截图本身就是真实界面）。
 
-### 4.3 hero 截图为单图、不做主题切换
+### 4.3 hero 截图：浅 / 深两张 + 纯 CSS 切换
 
-参考站有「浅色 / 深色两张真机截图 + 纯 CSS 切换」。本站**目前只有一张深色真实界面截图**，
-因此 hero 只有一张 `<img>`（不引入 `data-shot` 机制，避免出现半套行为）。
-升级路径见 §8 的「截图替换」。
+两张截图**同时**存在于 DOM，由纯 CSS 按主题显示恰好一张（参考实现：`pi-desktop-website/style.css`
+的 `data-shot` 段）：
+
+| 选择器 | 作用 |
+|---|---|
+| `.hero-shot img[data-shot]` | 基线：全部隐藏 |
+| `.hero-shot img[data-shot="light"]` | 浅色下显示 |
+| `html[data-theme="dark"] .hero-shot img[data-shot="light"]` / `[data-shot="dark"]` | 深色下切换 |
+| `@media (prefers-color-scheme: dark) html:not([data-theme]) …` | **无 JS** 且系统深色时切换 |
+
+三条硬约束：
+
+1. **禁止用 JS 切图**：CSS 必须在 JS 运行前（以及 JS 被禁用时）就选对那张；
+2. 切换规则必须**限定在 `.hero-shot` 作用域内**，不能命中页面其他 `<img>`；
+3. 无 JS 分支用 `html:not([data-theme])` —— 依赖 §4.1「`<html>` 上不写死 `data-theme`」这条约束，
+   两者是配套的，改一个就要复查另一个。
 
 ## 5. 交互
 
@@ -172,10 +190,10 @@ npx serve .        # 然后访问 http://localhost:3000/index_zh.html
 - [ ] 改了文案？`index.html` **和** `index_zh.html` 一起改（必要时同步本文 §2 的事实）。
 - [ ] 新增区块？两页 1:1 镜像 + 在 `style.css` 补 token / 样式。
 - [ ] 主题或交互改动？保持 token 驱动 + 无 JS 兜底 + reduced-motion 路径。
-- [ ] **截图替换**：把真机截图（建议 2560×1600 级别，浅 / 深各一张）放进 `images/`，
-      缩到**1600px 宽**并压缩后覆盖 `images/hero.png`；
-      若拿到浅 / 深两张，再在 `style.css` 恢复 `img[data-shot]` 的纯 CSS 切换规则（参考
-      `dsh-desktop-website/style.css` 的 `data-shot` 段），两页 hero 同时加 `data-shot` 属性。
+- [ ] **截图替换**：把浅 / 深两张真机截图覆盖 `images/light.png` 与 `images/dark.png`
+      （原图多大就多大，**不要**为体积缩到失真；两张尺寸必须一致，否则切换时会跳动），
+      同步改两页 hero 的 `alt` 与 `width` / `height`，以及 caption 里对画面的描述。
+- [ ] 换图后复查 §4.3 的三条硬约束：纯 CSS 切图、作用域限定 `.hero-shot`、无 JS 分支仍命中。
 - [ ] 离线自检：`file://` 打开两页，控制台无报错、无网络请求。
 - [ ] 视觉自检：1280 / 768 / 390 三个宽度 × 明暗两套主题。
 - [ ] 事实自检：本文 §2.4 的护栏仍成立（尤其「不写官方隶属、不写未取证的真机结论」）。
