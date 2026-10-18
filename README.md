@@ -1,7 +1,7 @@
 # oc-desktop-website
 
-> **OC Desktop** 的产品官网（落地页）—— [oc-desktop-hos](../oc-desktop-hos)（鸿蒙移植版）对外的主页，
-> 同时把上游 **opencode** 的桌面发行版作为官方渠道引用出去。
+> **OC Desktop** 的产品官网（落地页）—— 统一呈现**两个**第三方鸿蒙版别：
+> [`oc-desktop-ark`](../oc-desktop-ark)（**HarmonyOS Edition**）与 [`oc-desktop-hos`](../oc-desktop-hos)（**Electron on HarmonyOS Edition**），并引用上游 **opencode** 官方桌面发行版。
 >
 > 预期线上地址：<https://fellow99.github.io/oc-desktop-website/>
 
@@ -22,21 +22,21 @@
 | `style.css` | 共享样式表 —— 全部主题化走 CSS 自定义属性 |
 | `script.js` | 共享主题切换逻辑（语言中立，`data-label-*` 驱动） |
 | `images/logo.svg` | 品牌 logo（取自父工程 `../assets/logo.svg`），同时用作 favicon 与导航/页脚字标 |
-| `images/light.png` `images/dark.png` | 首屏产品截图对（浅色 / 深色，来自父工程 `../assets/screenshots/hos/`，见 §2.3） |
+| `images/light.png` `images/dark.png` | 首屏产品截图对（浅色 / 深色，取自 **Electron on HarmonyOS Edition** 的 `../assets/screenshots/hos/`，见 §2.3） |
 
 ## 2. 定位与关键信息
 
 ### 2.1 一句话定位
 
-**OC Desktop = opencode 的桌面端。** 四大桌面平台：
+**OC Desktop = opencode 的桌面端。** 四大桌面平台，鸿蒙端**两个版别**：
 
 - **Windows / Linux / macOS**：使用**上游 opencode 官方发行版**（BETA）——本站只做引用与下载导流；
-- **HarmonyOS（2in1 / 平板）**：由本工程（`oc-desktop-hos`）以**第三方移植**形态交付，品牌名 **OC Desktop**。
+- **HarmonyOS（2in1 / 平板）**：同一产品的**两个独立第三方版别**，品牌名统一为 **OC Desktop**：**HarmonyOS Edition**（[`oc-desktop-ark`](../oc-desktop-ark)，进程内 Node v24.2.0 + **ArkWeb**，无 Electron、无 Chromium）与 **Electron on HarmonyOS Edition**（[`oc-desktop-hos`](../oc-desktop-hos)，Electron 37 = Node 22.17.0 / Chromium 138）。
+
+两版同一上游基线 **v2.0.26**、同一份官方 Web UI、可同机共存；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md §一` 为准）。
 
 **Hero 主标**：ZH「让 opencode 在桌面安家」· EN *"opencode, at home on the desktop"*。
-
-**四大桌面覆盖是首页头条差异点**：出现在 hero lede、`ul.os-strip` 四枚系统 chip（Windows / Linux / macOS /
-HarmonyOS）、两张平台卡与平台免责声明里。
+**四大桌面覆盖 + 双版别是首页头条差异点**：hero lede、`ul.os-strip` 四枚 chip（Windows / Linux / macOS / HarmonyOS）、CTA 的两个版别按钮、三张平台卡与免责声明都要出现。
 
 ### 2.2 卖点（特性卡）
 
@@ -55,12 +55,12 @@ HarmonyOS）、两张平台卡与平台免责声明里。
   `../assets/screenshots/hos/2.png` → `images/dark.png`（1280×720，深色主题）。
 - 转录只做**无损**处理：原图是 RGBA 但 alpha 全为 255（不透明），因此转成 RGB 重新编码 PNG
   （约 27–29 KB），**不裁切、不缩放、不改内容**。
-- 画面内容是 **OC Desktop 鸿蒙版的真实界面**（已用 Windows OCR 逐字核对）：新建会话页的
+- 画面内容是 **OC Desktop · Electron on HarmonyOS Edition 的真实界面**（已用 Windows OCR 逐字核对）：新建会话页的
   「会话 / 随便问点什么、`/` 可查看命令、`@` 可添加上下文」输入区、模型 `DeepSeek V4 Flash`、
   agent `Default`、工作区 `workspace`、git 状态「无 Git」。因此 caption 不含任何编造内容；
   英文页额外标注「界面本身是简体中文」，避免英文读者误判。
-- **不写「实机 / 设备实拍」之类无法自证的措辞**：截图存放在 `assets/screenshots/hos/`，
-  只能确证「这是鸿蒙版的界面」，不能确证采集方式。
+- **不写「实机 / 设备实拍」之类无法自证的措辞**：截图取自 `assets/screenshots/hos/`（Electron 版），只能确证
+  「这是 Electron on HarmonyOS Edition 的界面」，**不得**把它当作 HarmonyOS Edition 的界面证据（Ark 版暂无截图）。
 
 ### 2.4 文案准确性护栏（长期有效）
 
@@ -69,13 +69,13 @@ HarmonyOS）、两张平台卡与平台免责声明里。
   - 源码：<https://github.com/anomalyco/opencode/tree/v2>
   - 下载：<https://opencode.ai/zh/download>
 - **禁止编造能力**：不写「自动更新」「应用商店上架发行」「官方产品 / 与上游有隶属关系」；
-  必须写明鸿蒙版是**第三方移植**、Windows / Linux / macOS 版由**上游官方分发**。
-- **鸿蒙版的已知边界要如实写**（唯一一处诚实性硬要求）：终端 PTY、依赖外部进程的工具
-  （LSP / MCP / git）不可用；插件在线安装默认关闭。
-- **真机验证口径取保守值**：`oc-desktop-hos/README.md §当前状态` 记 v2.0.26「真机验证通过」，
-  而 `docs/鸿蒙环境能力清单-v2.0.26.md §0` 记该轮 HAP **未上机**（设备掉线）、`docs/真机验证记录.md`
-  仍是未填模板。三处**互相矛盾**，因此站上只写「**已构建并签名**」，**不写「真机验证通过」**；
-  待 `docs/真机验证记录.md` 补齐后再放开。
+  必须写明两个鸿蒙版别都是**第三方移植**、Windows / Linux / macOS 版由**上游官方分发**。
+- **鸿蒙端的已知边界（两版相同）要如实写**（唯一一处诚实性硬要求）：终端 PTY、依赖外部进程的工具
+  （LSP / MCP / git）不可用；插件在线安装默认关闭；HarmonyOS Edition 另外不带 Chromium。
+- **两个版别的验证口径分开写、互不挪用**：
+  - **HarmonyOS Edition** 只写「**已构建 · host 侧门禁全绿 · 未签名 · 待真机**」（证据 `oc-desktop-ark/logs/20261018-1/DEV_CHECKLIST.md`；`TC-D-*` 全部未执行），**不得**写「真机验证通过」「已签名」「可安装」；
+  - **Electron on HarmonyOS Edition** 可写「**已构建 · 签名 · 真机安装启动 + 基本流程验证**」（`docs/鸿蒙环境能力清单-v2.0.26.md` §10 / §11.2），
+    但须同时承认 §5 的 ⬜-2 / ⬜-12 未取证、⬜-9 部分取证、`docs/真机验证记录.md` 仍是模板 —— **不得**写「全项真机验证通过」。
 - 产品事实变化时，**两套语言页 + 本文 §2 同时改**。
 
 ## 3. 页面结构
@@ -84,15 +84,15 @@ HarmonyOS）、两张平台卡与平台免责声明里。
 
 1. **Nav**（`header.site-header`）：logo 字标 + `OC Desktop` 后缀 · 锚点链接（特性 / 平台 / 实现原理）·
    胶囊语言切换（`EN / 中文`）· 主题切换。≤ 760px 隐藏锚点链接，品牌 + 语言 + 主题保留。
-2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede、`ul.os-strip`（4 枚系统 chip）、
-   CTA 行（主：`OpenCode 官方下载` → 上游下载页；次：鸿蒙版源码 → 本工程仓库；ghost：了解实现）、
-   可信行（版本 / 上游基线 / 分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption。
+2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede（点明两个版别）、`ul.os-strip`（4 枚系统 chip）、
+   CTA 行（主：`OpenCode 官方下载` → 上游下载页；两个版别按钮：HarmonyOS Edition → `oc-desktop-ark`、Electron on HarmonyOS Edition → `oc-desktop-hos`；ghost：了解实现）、
+   可信行（**两个版别的版本与验证状态各一行** + Windows / Linux / macOS 上游分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption（标注 Electron on HarmonyOS Edition）。
 3. **Features**（`#features`）：标题 + lede + 4 张图标卡（桌面 2×2，≤ 820px 单列）。
-4. **Platforms**（`#platforms`）：两张版本卡（标签 + 能力要点 + 链接），下方平台覆盖免责声明与
-   鸿蒙版能力边界说明。
+4. **Platforms**（`#platforms`）：**三张**卡 —— HarmonyOS Edition、Electron on HarmonyOS Edition、上游 Windows / Linux / macOS（标签 + 能力要点 + 链接），下方
+   免责声明（写明两个鸿蒙版别均为第三方移植）与鸿蒙端共同能力边界说明。
 5. **How it works**（`#how`）：3 个编号步骤 + 箭头连接，收尾一枚结果徽标。
-6. **Footer**：字标 + 一句话 + ©/许可行 + 相关仓库链接（本工程鸿蒙版、上游 opencode v2 分支、上游下载页、
-   harmonypc-electron、Electron）。
+6. **Footer**：字标 + 一句话 + ©/许可行 + 相关链接（HarmonyOS Edition、Electron on HarmonyOS Edition、`@fellow99/node-bridge`、
+   上游 opencode v2 分支、上游下载页、harmonypc-electron、Electron）。
 
 中英两页必须**结构完全一致** —— 区块顺序、元素 class、交互行为不得分叉，只有文案被翻译。
 
@@ -190,10 +190,11 @@ npx serve .        # 然后访问 http://localhost:3000/index_zh.html
 - [ ] 改了文案？`index.html` **和** `index_zh.html` 一起改（必要时同步本文 §2 的事实）。
 - [ ] 新增区块？两页 1:1 镜像 + 在 `style.css` 补 token / 样式。
 - [ ] 主题或交互改动？保持 token 驱动 + 无 JS 兜底 + reduced-motion 路径。
-- [ ] **截图替换**：把浅 / 深两张真机截图覆盖 `images/light.png` 与 `images/dark.png`
+- [ ] **截图替换**：把浅 / 深两张 **Electron on HarmonyOS Edition** 截图覆盖 `images/light.png` 与 `images/dark.png`
       （原图多大就多大，**不要**为体积缩到失真；两张尺寸必须一致，否则切换时会跳动），
-      同步改两页 hero 的 `alt` 与 `width` / `height`，以及 caption 里对画面的描述。
+      同步改两页 hero 的 `alt`、`width` / `height` 与 caption，并在本文 §2.3 更新归属（**不得**把 Electron 版截图标成 HarmonyOS Edition）。
 - [ ] 换图后复查 §4.3 的三条硬约束：纯 CSS 切图、作用域限定 `.hero-shot`、无 JS 分支仍命中。
 - [ ] 离线自检：`file://` 打开两页，控制台无报错、无网络请求。
 - [ ] 视觉自检：1280 / 768 / 390 三个宽度 × 明暗两套主题。
-- [ ] 事实自检：本文 §2.4 的护栏仍成立（尤其「不写官方隶属、不写未取证的真机结论」）。
+- [ ] 事实自检：本文 §2.4 的护栏仍成立（尤其「不写官方隶属、不写未取证的真机结论、两版验证口径不互借」）。
+- [ ] 版别自检：两页 + 本文 §2 + 父工程 `README.md §一` 用同一组名字 —— **HarmonyOS Edition**（`oc-desktop-ark`）/ **Electron on HarmonyOS Edition**（`oc-desktop-hos`），不混称「鸿蒙版」。

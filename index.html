@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OC Desktop — the desktop form of opencode (Windows / Linux / macOS / HarmonyOS)</title>
-  <meta name="description" content="OC Desktop is the desktop form of opencode: Windows, Linux and macOS run the upstream official release, while HarmonyOS (2in1 / tablet) is a third-party port. The server lives inside the app and the official Web UI loads same-origin — zero upstream changes." />
+  <title>OC Desktop — opencode on the desktop, with two HarmonyOS editions</title>
+  <meta name="description" content="OC Desktop is the desktop form of opencode: Windows, Linux and macOS run the upstream official release; HarmonyOS ships as two independent third-party editions — HarmonyOS Edition (in-process Node + ArkWeb, no Electron) and Electron on HarmonyOS Edition. The server runs inside the app and the official Web UI loads same-origin — zero upstream changes." />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f2" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c0b0a" />
   <script>
@@ -70,7 +70,7 @@
         <div class="hero-copy">
           <span class="eyebrow">Open source · MIT · OC Desktop</span>
           <h1>opencode, at home on the desktop</h1>
-          <p class="lede">OC Desktop is the desktop form of opencode: Windows, Linux and macOS run the <strong>upstream official release</strong>, while HarmonyOS (2in1 / tablet) is delivered by this project as a <strong>third-party port</strong>. The opencode server lives inside the app itself and the official Web UI loads same-origin over a local port — zero upstream changes.</p>
+          <p class="lede">OC Desktop is the desktop form of opencode: Windows, Linux and macOS run the <strong>upstream official release</strong>, while HarmonyOS (2in1 / tablet) ships as <strong>two third-party editions</strong> — <strong>HarmonyOS Edition</strong> (in-process Node + ArkWeb, no Electron) and <strong>Electron on HarmonyOS Edition</strong> (Electron runtime). The opencode server lives inside the app itself and the official Web UI loads same-origin over a local port — zero upstream changes.</p>
           <ul class="os-strip" aria-label="Supported desktop platforms">
             <li class="os-chip"><span class="os-dot" aria-hidden="true"></span>Windows</li>
             <li class="os-chip"><span class="os-dot" aria-hidden="true"></span>Linux</li>
@@ -82,8 +82,12 @@
               <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"></path></svg>
               Official OpenCode download
             </a>
+            <a class="btn btn-outline" href="https://github.com/fellow99/oc-desktop-ark" target="_blank" rel="noopener">
+              HarmonyOS Edition
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
+            </a>
             <a class="btn btn-outline" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
-              HarmonyOS source
+              Electron on HarmonyOS Edition
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
             </a>
             <a class="btn btn-ghost" href="#how">
@@ -92,7 +96,7 @@
             </a>
           </div>
           <p class="trust">
-            HarmonyOS edition v2.0.26 · based on upstream opencode v2.0.26 · built and signed (signed HAP)
+            HarmonyOS ships <strong>two editions</strong> · <strong>HarmonyOS Edition</strong> v2.0.26 — in-process Node v24.2.0 + ArkWeb, no Electron (built, unsigned; device run pending) · <strong>Electron on HarmonyOS Edition</strong> v2.0.26 — Electron 37, signed HAP
             <br>
             Windows / Linux / macOS are distributed by upstream <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">opencode</a> (BETA) · downloads and source point at the official channels
           </p>
@@ -103,7 +107,7 @@
             <img src="images/light.png" data-shot="light" alt="OC Desktop for HarmonyOS in light theme: the new-session screen with DeepSeek V4 Flash selected; the UI itself is Simplified Chinese" width="1280" height="720" />
             <img src="images/dark.png" data-shot="dark" alt="OC Desktop for HarmonyOS in dark theme: the new-session screen with DeepSeek V4 Flash selected; the UI itself is Simplified Chinese" width="1280" height="720" />
           </figure>
-          <p class="shot-caption">OC Desktop for HarmonyOS (the UI itself is Simplified Chinese) — the shot follows the theme</p>
+          <p class="shot-caption">OC Desktop · Electron on HarmonyOS Edition (the UI itself is Simplified Chinese) — the shot follows the theme</p>
         </div>
       </div>
     </section>
@@ -165,8 +169,28 @@
         <div class="platform-grid">
           <article class="platform-card is-ours">
             <div class="platform-head">
-              <h3>OC Desktop · HarmonyOS</h3>
-              <span class="platform-tag">HAP · 2in1 / tablet · third-party port</span>
+              <h3>OC Desktop · HarmonyOS Edition</h3>
+              <span class="platform-tag">in-process Node + ArkWeb · 2in1 / tablet · third-party port</span>
+            </div>
+            <ul class="bullet-list">
+              <li>Upstream baseline opencode v2.0.26 (branch <code>v2</code>)</li>
+              <li><strong>No Electron, no Chromium</strong>: Node v24.2.0 runs <strong>inside the app process</strong> via <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a> (<code>dlopen</code> + <code>node::Start</code>)</li>
+              <li>ArkWeb loads the official Web UI same-origin from <code>127.0.0.1:&lt;random port&gt;</code></li>
+              <li>SQLite sessions (<code>node:sqlite</code>) in the app sandbox · credentials never leave the device</li>
+              <li>Built and verified on host: payload 43 files / 62.3 MB, unsigned HAP 111 MB, <code>/api/info</code> + SPA + SSE green · device run pending</li>
+            </ul>
+            <div class="platform-actions">
+              <a class="repo-link" href="https://github.com/fellow99/oc-desktop-ark" target="_blank" rel="noopener">
+                View on GitHub
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="platform-card is-ours">
+            <div class="platform-head">
+              <h3>OC Desktop · Electron on HarmonyOS Edition</h3>
+              <span class="platform-tag">Electron-on-HarmonyOS · 2in1 / tablet · third-party port</span>
             </div>
             <ul class="bullet-list">
               <li>Upstream baseline opencode v2.0.26 (branch <code>v2</code>)</li>
@@ -174,7 +198,7 @@
               <li>The official Web UI frontend is reused 100%, loaded same-origin</li>
               <li>On-device data directory mapping + SQLite session persistence</li>
               <li>Plain-JS HarmonyOS tools: <code>shell</code>, <code>grep</code>, <code>glob</code></li>
-              <li>Minimal permissions · branded icons · signed HAP, local distribution</li>
+              <li>Signed HAP · installed, launched and basic flow verified on device (v2.0.26)</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
@@ -210,8 +234,8 @@
           </article>
         </div>
 
-        <p class="disclaimer">OC Desktop is a desktop form built on the open-source project opencode: the Windows / Linux / macOS edition is distributed upstream, the HarmonyOS edition is this project's third-party port. Neither is affiliated with the upstream team.</p>
-        <p class="limits"><strong>HarmonyOS known limits:</strong> terminal PTY and tools that need external processes (LSP / MCP / git) are unavailable on this platform; installing plugins online is off by default.</p>
+        <p class="disclaimer">OC Desktop is a desktop form built on the open-source project opencode: the Windows / Linux / macOS edition is distributed upstream, while HarmonyOS ships <strong>two</strong> independent third-party editions — <strong>HarmonyOS Edition</strong> (in-process Node + ArkWeb, no Electron) and <strong>Electron on HarmonyOS Edition</strong> (Electron runtime). None is affiliated with the upstream team.</p>
+        <p class="limits"><strong>HarmonyOS known limits (both editions):</strong> terminal PTY and tools that need external processes (LSP / MCP / git) are unavailable on this platform; installing plugins online is off by default. The HarmonyOS Edition additionally ships no Chromium at all.</p>
       </div>
     </section>
 
@@ -258,11 +282,19 @@
       <div class="footer-left">
         <div class="footer-brand"><img src="images/logo.svg" alt="OC Desktop" class="brand-logo footer-brand-logo" /><span class="brand-suffix">OC Desktop</span></div>
         <p class="footer-one-liner">The desktop form of opencode: Windows / Linux / macOS and HarmonyOS.</p>
-        <p class="footer-copy">&copy; 2026 fellow99 · MIT License · built on the open-source project opencode (the HarmonyOS edition is a third-party port)</p>
+        <p class="footer-copy">&copy; 2026 fellow99 · MIT License · built on the open-source project opencode (both HarmonyOS editions are third-party ports)</p>
       </div>
       <nav class="footer-links" aria-label="Footer">
+        <a href="https://github.com/fellow99/oc-desktop-ark" target="_blank" rel="noopener">
+          HarmonyOS Edition repo
+          <svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
+        </a>
         <a href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
-          HarmonyOS repo
+          Electron on HarmonyOS Edition repo
+          <svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
+        </a>
+        <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener">
+          @fellow99/node-bridge
           <svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
         </a>
         <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">
