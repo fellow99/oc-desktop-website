@@ -102,7 +102,7 @@
             </a>
           </div>
           <p class="trust">
-            Three mobile editions, one baseline <strong>opencode v2.1.2</strong> · <strong>HarmonyOS Edition</strong> — in-process Node v24.2 + ArkWeb, no Electron · <strong>Electron on HarmonyOS Edition</strong> — Electron 37 · <strong>Android Edition</strong> — in-process Node v24.2 + system WebView
+            Three mobile editions, one baseline <strong>opencode v2.2.5</strong> · <strong>HarmonyOS Edition</strong> — in-process Node v24.2 + ArkWeb, no Electron · <strong>Electron on HarmonyOS Edition</strong> — Electron 37 · <strong>Android Edition</strong> — in-process Node v24.2 + system WebView
             <br>
             Windows / Linux / macOS are distributed by upstream <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">opencode</a> (BETA) · downloads and source point at the official channels
           </p>
@@ -179,7 +179,7 @@
               <span class="platform-tag">in-process Node + ArkWeb · 2in1 / tablet · third-party port</span>
             </div>
             <ul class="bullet-list">
-              <li>Upstream baseline opencode v2.1.2 (branch <code>v2</code>)</li>
+              <li>Upstream baseline opencode v2.2.5 (branch <code>v2</code>)</li>
               <li><strong>No Electron, no Chromium</strong>: Node v24.2.0 runs <strong>inside the app process</strong> via <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a> (<code>dlopen</code> + <code>node::Start</code>)</li>
               <li>ArkWeb loads the official Web UI same-origin from <code>127.0.0.1:&lt;random port&gt;</code></li>
               <li>SQLite sessions (<code>node:sqlite</code>) in the app sandbox · credentials never leave the device</li>
@@ -200,12 +200,12 @@
               <span class="platform-tag">Electron-on-HarmonyOS · 2in1 / tablet · third-party port</span>
             </div>
             <ul class="bullet-list">
-              <li>Upstream baseline opencode v2.1.2 (branch <code>v2</code>)</li>
+              <li>Upstream baseline opencode v2.2.5 (branch <code>v2</code>)</li>
               <li>Electron-on-HarmonyOS runtime (Electron 37 / Node 22 / Chromium 138)</li>
               <li>The official Web UI frontend is reused 100%, loaded same-origin, fully branded</li>
               <li>On-device data directory mapping + SQLite session persistence (better-sqlite3)</li>
               <li>Plain-JS HarmonyOS tools: <code>shell</code>, <code>grep</code>, <code>glob</code></li>
-              <li>8 idempotent patches · real-device verified on v2.0.26; v2.1.2 build complete</li>
+              <li>8 idempotent patches · real-device verified on v2.0.26; v2.2.5 build complete (on-device pending)</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
@@ -221,7 +221,7 @@
               <span class="platform-tag">in-process Node + system WebView · tablet / foldable / desktop · third-party port</span>
             </div>
             <ul class="bullet-list">
-              <li>Upstream baseline opencode v2.1.2 (branch <code>v2</code>)</li>
+              <li>Upstream baseline opencode v2.2.5 (branch <code>v2</code>)</li>
               <li><strong>No bundled browser engine</strong>: Node v24.2 runs <strong>inside the app process</strong> via <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>io.github.fellow99:node-bridge</code></a>; the system WebView renders the UI</li>
               <li>The official Web UI loads same-origin from <code>127.0.0.1:&lt;random port&gt;</code>, fully branded (title, icon, about page)</li>
               <li>SQLite sessions (<code>node:sqlite</code>) in the app sandbox · cleartext allowed for loopback only · credentials never leave the device</li>
@@ -273,7 +273,7 @@
         <p class="section-eyebrow">capability matrix</p>
         <div class="section-head">
           <h2>Capability matrix</h2>
-          <p class="section-lede">All three mobile editions share the opencode v2.1.2 core; they differ in runtime, renderer and platform gaps.</p>
+          <p class="section-lede">All three mobile editions share the opencode v2.2.5 core; they differ in runtime, renderer and platform gaps.</p>
         </div>
         <div class="table-wrap">
           <table class="cap-table">

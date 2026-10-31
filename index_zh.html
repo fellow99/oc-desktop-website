@@ -102,7 +102,7 @@
             </a>
           </div>
           <p class="trust">
-            三个移动端版别，统一基线 <strong>opencode v2.1.2</strong> · <strong>HarmonyOS Edition</strong> —— 进程内 Node v24.2 + ArkWeb，不带 Electron · <strong>Electron on HarmonyOS Edition</strong> —— Electron 37 · <strong>Android Edition</strong> —— 进程内 Node v24.2 + 系统 WebView
+            三个移动端版别，统一基线 <strong>opencode v2.2.5</strong> · <strong>HarmonyOS Edition</strong> —— 进程内 Node v24.2 + ArkWeb，不带 Electron · <strong>Electron on HarmonyOS Edition</strong> —— Electron 37 · <strong>Android Edition</strong> —— 进程内 Node v24.2 + 系统 WebView
             <br>
             Windows / Linux / macOS 由上游 <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">opencode</a> 官方分发（BETA）· 下载与源码均指向官方渠道
           </p>
@@ -179,7 +179,7 @@
               <span class="platform-tag">进程内 Node + ArkWeb · 2in1 / 平板 · 第三方移植</span>
             </div>
             <ul class="bullet-list">
-              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
+              <li>上游基线 opencode v2.2.5（分支 <code>v2</code>）</li>
               <li><strong>不带 Electron、不带 Chromium</strong>：Node v24.2 在<strong>应用进程内</strong>经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a>（<code>dlopen</code> + <code>node::Start</code>）运行</li>
               <li>ArkWeb 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载官方 Web UI</li>
               <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 凭据不出设备</li>
@@ -200,12 +200,12 @@
               <span class="platform-tag">Electron-on-HarmonyOS · 2in1 / 平板 · 第三方移植</span>
             </div>
             <ul class="bullet-list">
-              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
+              <li>上游基线 opencode v2.2.5（分支 <code>v2</code>）</li>
               <li>Electron-on-HarmonyOS 运行时（Electron 37 / Node 22 / Chromium 138）</li>
               <li>官方 Web UI 前端 100% 复用，同源加载，完整品牌化</li>
               <li>端侧数据目录映射 + SQLite 会话持久化（better-sqlite3）</li>
               <li>纯 JS 鸿蒙工具：覆盖 <code>shell</code>、<code>grep</code>、<code>glob</code></li>
-              <li>8 条幂等补丁 · v2.0.26 已真机验证；v2.1.2 构建已完成</li>
+              <li>8 条幂等补丁 · v2.0.26 已真机验证；v2.2.5 构建已完成、待真机</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
@@ -221,7 +221,7 @@
               <span class="platform-tag">进程内 Node + 系统 WebView · 平板 / 折叠屏 / 桌面 · 第三方移植</span>
             </div>
             <ul class="bullet-list">
-              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
+              <li>上游基线 opencode v2.2.5（分支 <code>v2</code>）</li>
               <li><strong>不随包浏览器内核</strong>：Node v24.2 经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>io.github.fellow99:node-bridge</code></a> 在<strong>应用进程内</strong>运行；系统 WebView 渲染界面</li>
               <li>官方 Web UI 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载，完整品牌化（标题 / 图标 / 关于页）</li>
               <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 仅 loopback 放行明文 · 凭据不出设备</li>
@@ -273,7 +273,7 @@
         <p class="section-eyebrow">能力对照</p>
         <div class="section-head">
           <h2>能力对照清单</h2>
-          <p class="section-lede">三个移动端版别共享 opencode v2.1.2 内核，差异在运行时、渲染内核与平台缺口。</p>
+          <p class="section-lede">三个移动端版别共享 opencode v2.2.5 内核，差异在运行时、渲染内核与平台缺口。</p>
         </div>
         <div class="table-wrap">
           <table class="cap-table">

@@ -35,7 +35,7 @@
 - **HarmonyOS（2in1 / 平板）**：同一产品的**两个独立第三方版别**，品牌名统一为 **OC Desktop**：**HarmonyOS Edition**（[`oc-desktop-ark`](../oc-desktop-ark)，进程内 Node v24.2 + **ArkWeb**，无 Electron、无 Chromium）与 **Electron on HarmonyOS Edition**（[`oc-desktop-hos`](../oc-desktop-hos)，Electron 37 = Node 22 / Chromium 138）。
 - **Android（平板 / 折叠屏 / 桌面优先）**：**Android Edition**（[`oc-desktop-android`](../oc-desktop-android)，进程内 Node v24.2 + 系统 WebView，无自带内核）。
 
-三版同一上游基线 **v2.1.2**、同一份官方 Web UI；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md` 与 `docs/能力对照清单.md` 为准）。
+三版同一上游基线 **v2.2.5**、同一份官方 Web UI；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md` 与 `docs/能力对照清单.md` 为准）。
 
 **Hero 主标**：ZH「让 opencode 在桌面安家」· EN *"opencode, at home on the desktop"*。
 **多平台覆盖 + 三个移动版别是首页头条差异点**：hero lede、`ul.os-strip` 五枚 chip（Windows / Linux / macOS / HarmonyOS / Android）、CTA 的三个版别按钮、四张平台卡与免责声明都要出现。
@@ -79,7 +79,7 @@
   不写解释文字；矩阵下方一行图例 + 指向完整清单。三版列固定为 Android / HarmonyOS / Electron on HOS。
 - **三个版别的验证口径分开写、互不挪用**（事实源 `docs/能力对照清单.md` §0/§10）：
   - **HarmonyOS Edition** 可写「**真机 5 轮验证**」（logs/20261018~20261022，HAD-W32）；
-  - **Electron on HarmonyOS Edition** 只写「**v2.0.26 真机验证；v2.1.2 构建完成、待真机**」（T08/T09 无 TEST_REPORT），**不得**写「v2.1.2 全项真机验证通过」；
+  - **Electron on HarmonyOS Edition** 只写「**v2.0.26 真机验证；v2.2.5 构建完成、待真机**」（T08/T09 无 TEST_REPORT），**不得**写「v2.2.5 全项真机验证通过」；
   - **Android Edition** 只写「**模拟器多轮 + 真机一轮功能测试**」，平台卡不得声称全项真机覆盖。
 - 产品事实变化时，**两套语言页 + 本文 §2 同时改**。
 
@@ -91,7 +91,7 @@
    胶囊语言切换（`EN / 中文`）· 主题切换。≤ 760px 隐藏锚点链接，品牌 + 语言 + 主题保留。
 2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede（点明三个移动版别）、`ul.os-strip`（5 枚系统 chip）、
    CTA 行（主：`OpenCode 官方下载` → 上游下载页；三个版别按钮：HarmonyOS Edition → `oc-desktop-ark`、Electron on HarmonyOS Edition → `oc-desktop-hos`、Android Edition → `oc-desktop-android`；ghost：了解实现）、
-   可信行（**三版统一基线 v2.1.2 一行** + Windows / Linux / macOS 上游分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption（标注 Electron on HarmonyOS Edition）。
+   可信行（**三版统一基线 v2.2.5 一行** + Windows / Linux / macOS 上游分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption（标注 Electron on HarmonyOS Edition）。
 3. **Features**（`#features`）：标题 + lede + 4 张图标卡（桌面 2×2，≤ 820px 单列）。
 4. **Platforms**（`#platforms`）：**四张**卡 —— HarmonyOS Edition、Electron on HarmonyOS Edition、Android Edition、上游 Windows / Linux / macOS（标签 + 能力要点 + 链接），下方
    免责声明（写明三个移动版别均为第三方移植）与移动端共同能力边界说明。
