@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OC Desktop —— opencode 的桌面端（含两个鸿蒙版别）</title>
-  <meta name="description" content="OC Desktop 是 opencode 的桌面端：Windows、Linux、macOS 使用上游官方发行版；鸿蒙端提供两个独立的第三方版别 —— HarmonyOS Edition（进程内 Node + ArkWeb，不带 Electron）与 Electron on HarmonyOS Edition（Electron 运行时）。服务端内置于应用，官方 Web UI 同源加载，上游零改动。" />
+  <title>OC Desktop —— opencode 的桌面端（鸿蒙双版别 + Android）</title>
+  <meta name="description" content="OC Desktop 是 opencode 的桌面端：Windows、Linux、macOS 使用上游官方发行版；鸿蒙端提供两个独立的第三方版别 —— HarmonyOS Edition（进程内 Node + ArkWeb，不带 Electron）与 Electron on HarmonyOS Edition（Electron 运行时），另有 Android Edition（进程内 Node + 系统 WebView）。服务端内置于应用，官方 Web UI 同源加载，上游零改动。" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f2" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c0b0a" />
   <script>
@@ -36,6 +36,7 @@
       <div class="nav-links">
         <a href="#features">特性</a>
         <a href="#platforms">平台</a>
+        <a href="#capabilities">能力对照</a>
         <a href="#how">实现原理</a>
       </div>
       <div class="nav-actions">
@@ -70,12 +71,13 @@
         <div class="hero-copy">
           <span class="eyebrow">开源 · MIT · OC Desktop</span>
           <h1>让 opencode 在桌面安家</h1>
-          <p class="lede">OC Desktop 是 opencode 的桌面端：Windows、Linux、macOS 使用<strong>上游官方发行版</strong>，HarmonyOS（2in1 / 平板）以<strong>两个第三方版别</strong>交付 —— <strong>HarmonyOS Edition</strong>（进程内 Node + ArkWeb，不带 Electron）与 <strong>Electron on HarmonyOS Edition</strong>（Electron 运行时）。opencode 服务端内置于应用自身，官方 Web UI 经本机端口同源加载 —— 上游零改动。</p>
+          <p class="lede">OC Desktop 是 opencode 的桌面端：Windows、Linux、macOS 使用<strong>上游官方发行版</strong>，HarmonyOS（2in1 / 平板）以<strong>两个第三方版别</strong>交付 —— <strong>HarmonyOS Edition</strong>（进程内 Node + ArkWeb，不带 Electron）与 <strong>Electron on HarmonyOS Edition</strong>（Electron 运行时）；Android 则有第三个 <strong>Android Edition</strong>（进程内 Node + 系统 WebView）。opencode 服务端内置于应用自身，官方 Web UI 经本机端口同源加载 —— 上游零改动。</p>
           <ul class="os-strip" aria-label="支持的桌面平台">
             <li class="os-chip"><span class="os-dot" aria-hidden="true"></span>Windows</li>
             <li class="os-chip"><span class="os-dot" aria-hidden="true"></span>Linux</li>
             <li class="os-chip"><span class="os-dot" aria-hidden="true"></span>macOS</li>
             <li class="os-chip is-ours"><span class="os-dot" aria-hidden="true"></span>HarmonyOS</li>
+            <li class="os-chip is-ours"><span class="os-dot" aria-hidden="true"></span>Android</li>
           </ul>
           <div class="cta-row">
             <a class="btn btn-primary" href="https://opencode.ai/zh/download" target="_blank" rel="noopener">
@@ -90,13 +92,17 @@
               Electron on HarmonyOS Edition
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
             </a>
+            <a class="btn btn-outline" href="https://github.com/fellow99/oc-desktop-android" target="_blank" rel="noopener">
+              Android Edition
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
+            </a>
             <a class="btn btn-ghost" href="#how">
               了解实现
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
             </a>
           </div>
           <p class="trust">
-            鸿蒙端有<strong>两个</strong>版别 · <strong>HarmonyOS Edition</strong> v2.0.26 —— 进程内 Node v24.2.0 + ArkWeb，不带 Electron（已构建未签名 · 待真机）· <strong>Electron on HarmonyOS Edition</strong> v2.0.26 —— Electron 37，签名 HAP
+            三个移动端版别，统一基线 <strong>opencode v2.1.2</strong> · <strong>HarmonyOS Edition</strong> —— 进程内 Node v24.2 + ArkWeb，不带 Electron · <strong>Electron on HarmonyOS Edition</strong> —— Electron 37 · <strong>Android Edition</strong> —— 进程内 Node v24.2 + 系统 WebView
             <br>
             Windows / Linux / macOS 由上游 <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">opencode</a> 官方分发（BETA）· 下载与源码均指向官方渠道
           </p>
@@ -142,8 +148,8 @@
             <span class="icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M7 9l3 2.5L7 14M13 14h4"></path><path d="M12 17v3M8 21h8"></path></svg>
             </span>
-            <h3>为鸿蒙补齐的能力</h3>
-            <p>终端 PTY 与外部进程在鸿蒙不可得，因此改用纯 JS 工具覆盖 <code>shell</code> / <code>grep</code> / <code>glob</code>，功能落到应用自己的能力上。</p>
+            <h3>为移动平台补齐的能力</h3>
+            <p>终端 PTY 与外部进程在鸿蒙 / Android 不可得，因此改用纯 JS 工具覆盖 <code>shell</code> / <code>grep</code> / <code>glob</code>，Git 进程内运行，功能落到应用自己的能力上。</p>
           </article>
 
           <article class="feature-card">
@@ -163,7 +169,7 @@
         <p class="section-eyebrow">挑一张你的桌面</p>
         <div class="section-head">
           <h2>挑一张你的桌面</h2>
-          <p class="section-lede">一个应用，四种桌面形态。你要的那张，下面就有。</p>
+          <p class="section-lede">一个应用，四种桌面形态 —— 三个移动端版别加上游官方发行版。你要的那张，下面就有。</p>
         </div>
 
         <div class="platform-grid">
@@ -173,11 +179,12 @@
               <span class="platform-tag">进程内 Node + ArkWeb · 2in1 / 平板 · 第三方移植</span>
             </div>
             <ul class="bullet-list">
-              <li>上游基线 opencode v2.0.26（分支 <code>v2</code>）</li>
-              <li><strong>不带 Electron、不带 Chromium</strong>：Node v24.2.0 在<strong>应用进程内</strong>经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a>（<code>dlopen</code> + <code>node::Start</code>）运行</li>
+              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
+              <li><strong>不带 Electron、不带 Chromium</strong>：Node v24.2 在<strong>应用进程内</strong>经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a>（<code>dlopen</code> + <code>node::Start</code>）运行</li>
               <li>ArkWeb 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载官方 Web UI</li>
               <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 凭据不出设备</li>
-              <li>已构建并在 host 侧验证：载荷 43 文件 / 62.3 MB、未签名 HAP 111 MB、<code>/api/info</code> + SPA + SSE 全绿 · 待真机</li>
+              <li>5 条幂等补丁 · 默认 jitless compat 形态 · 已完成 5 轮真机验证</li>
+              <li>载荷经 resfile 只读直读 · 真机 <code>/api/info</code> + SPA + SSE 全绿</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-ark" target="_blank" rel="noopener">
@@ -193,15 +200,36 @@
               <span class="platform-tag">Electron-on-HarmonyOS · 2in1 / 平板 · 第三方移植</span>
             </div>
             <ul class="bullet-list">
-              <li>上游基线 opencode v2.0.26（分支 <code>v2</code>）</li>
+              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
               <li>Electron-on-HarmonyOS 运行时（Electron 37 / Node 22 / Chromium 138）</li>
-              <li>官方 Web UI 前端 100% 复用，同源加载</li>
-              <li>端侧数据目录映射 + SQLite 会话持久化</li>
+              <li>官方 Web UI 前端 100% 复用，同源加载，完整品牌化</li>
+              <li>端侧数据目录映射 + SQLite 会话持久化（better-sqlite3）</li>
               <li>纯 JS 鸿蒙工具：覆盖 <code>shell</code>、<code>grep</code>、<code>glob</code></li>
-              <li>签名 HAP · 已构建、签名，并在真机完成安装启动与基本流程验证（v2.0.26）</li>
+              <li>8 条幂等补丁 · v2.0.26 已真机验证；v2.1.2 构建已完成</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
+                查看 GitHub
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="platform-card is-ours">
+            <div class="platform-head">
+              <h3>OC Desktop · Android Edition</h3>
+              <span class="platform-tag">进程内 Node + 系统 WebView · 平板 / 折叠屏 / 桌面 · 第三方移植</span>
+            </div>
+            <ul class="bullet-list">
+              <li>上游基线 opencode v2.1.2（分支 <code>v2</code>）</li>
+              <li><strong>不随包浏览器内核</strong>：Node v24.2 经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>io.github.fellow99:node-bridge</code></a> 在<strong>应用进程内</strong>运行；系统 WebView 渲染界面</li>
+              <li>官方 Web UI 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载，完整品牌化（标题 / 图标 / 关于页）</li>
+              <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 仅 loopback 放行明文 · 凭据不出设备</li>
+              <li>四个进程内插件：Git、搜索、工作区根（SAF 导入）与 <strong>pnpm</strong></li>
+              <li>7 条幂等补丁 · 运行时 16KB 页对齐 · CI 打 <code>v*</code> tag 即发 APK Release</li>
+            </ul>
+            <div class="platform-actions">
+              <a class="repo-link" href="https://github.com/fellow99/oc-desktop-android" target="_blank" rel="noopener">
                 查看 GitHub
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
               </a>
@@ -234,8 +262,50 @@
           </article>
         </div>
 
-        <p class="disclaimer">OC Desktop 是基于上游开源项目 opencode 构建的桌面端：Windows / Linux / macOS 版由上游官方分发；鸿蒙端有<strong>两个</strong>独立的第三方版别 —— <strong>HarmonyOS Edition</strong>（进程内 Node + ArkWeb，不带 Electron）与 <strong>Electron on HarmonyOS Edition</strong>（Electron 运行时）。均与上游团队无隶属关系。</p>
-        <p class="limits"><strong>鸿蒙端已知边界（两个版别相同）：</strong>终端 PTY、依赖外部进程的工具（LSP / MCP / git）在本平台不可用；插件在线安装默认关闭。HarmonyOS Edition 另外不随包分发 Chromium。</p>
+        <p class="disclaimer">OC Desktop 是基于上游开源项目 opencode 构建的桌面端：Windows / Linux / macOS 版由上游官方分发；移动端有<strong>三个</strong>独立的第三方版别 —— <strong>HarmonyOS Edition</strong>（进程内 Node + ArkWeb，不带 Electron）、<strong>Electron on HarmonyOS Edition</strong>（Electron 运行时）与 <strong>Android Edition</strong>（进程内 Node + 系统 WebView）。均与上游团队无隶属关系。</p>
+        <p class="limits"><strong>移动端已知边界（三个版别相同）：</strong>终端 PTY、本地 stdio MCP、依赖 spawn 外部进程的工具（LSP 等）不可用；插件在线安装默认关闭。HarmonyOS Edition 另外不随包分发 Chromium。</p>
+      </div>
+    </section>
+
+    <!-- ========================== CAPABILITIES ========================== -->
+    <section id="capabilities" class="section section-alt">
+      <div class="container">
+        <p class="section-eyebrow">能力对照</p>
+        <div class="section-head">
+          <h2>能力对照清单</h2>
+          <p class="section-lede">三个移动端版别共享 opencode v2.1.2 内核，差异在运行时、渲染内核与平台缺口。</p>
+        </div>
+        <div class="table-wrap">
+          <table class="cap-table">
+            <thead>
+              <tr><th>能力项</th><th>Android</th><th>鸿蒙 Ark</th><th>鸿蒙 Electron</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>流式对话 / SSE</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>图片附件 / 看图分析</td><td>✅</td><td>✅</td><td>⬜</td></tr>
+              <tr><td>文件读写编辑</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>Shell 命令</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>grep / glob 搜索</td><td>✅</td><td>🔶</td><td>✅</td></tr>
+              <tr><td>Git（isomorphic-git 插件）</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>工作区选择器</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>pnpm 进程内</td><td>✅</td><td>❌</td><td>❌</td></tr>
+              <tr><td>SQLite 会话</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td>重启后会话持久</td><td>✅</td><td>✅</td><td>🔶</td></tr>
+              <tr><td>MCP remote（HTTP/SSE）</td><td>🔶</td><td>🔶</td><td>🔶</td></tr>
+              <tr><td>MCP local（stdio）</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>终端 PTY</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Web UI 品牌化</td><td>✅</td><td>❌</td><td>✅</td></tr>
+              <tr><td>导航围栏 / 外链分流</td><td>✅</td><td>⬜</td><td>✅</td></tr>
+              <tr><td>宿主通知</td><td>✅</td><td>⬜</td><td>⬜</td></tr>
+              <tr><td>后台保活</td><td>🔶</td><td>❌</td><td>🔶</td></tr>
+              <tr><td>jitless 兼容形态</td><td>⬜</td><td>✅</td><td>⬜</td></tr>
+              <tr><td>插件在线安装</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>渲染内核</td><td>系统 WebView</td><td>ArkWeb</td><td>Chromium</td></tr>
+              <tr><td>真机证据充分度</td><td>🔶</td><td>✅</td><td>🔶</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="cap-legend"><strong>图例：</strong>✅ 已实现并实测 &nbsp;·&nbsp; 🔶 部分 / 受限 / 待验 &nbsp;·&nbsp; ⬜ 未投放 &nbsp;·&nbsp; ❌ 平台不可得。逐项溯源见工作区仓库 <code>docs/能力对照清单.md</code>。</p>
       </div>
     </section>
 
@@ -259,7 +329,7 @@
             <span class="step-num" aria-hidden="true">2</span>
             <div>
               <h3>同源加载界面</h3>
-              <p>渲染层（ArkWeb / Chromium）加载服务端内嵌的官方 Web UI。</p>
+              <p>渲染层（系统 WebView / ArkWeb / Chromium）加载服务端内嵌的官方 Web UI。</p>
             </div>
           </li>
           <li class="step">
@@ -281,8 +351,8 @@
     <div class="container footer-grid">
       <div class="footer-left">
         <div class="footer-brand"><img src="images/logo.svg" alt="OC Desktop" class="brand-logo footer-brand-logo" /><span class="brand-suffix">OC Desktop</span></div>
-        <p class="footer-one-liner">opencode 的桌面形态：Windows / Linux / macOS 与 HarmonyOS。</p>
-        <p class="footer-copy">&copy; 2026 fellow99 · MIT License · 基于上游开源项目 opencode 构建（两个鸿蒙版别均为第三方移植）</p>
+        <p class="footer-one-liner">opencode 的桌面形态：Windows / Linux / macOS、HarmonyOS 与 Android。</p>
+        <p class="footer-copy">&copy; 2026 fellow99 · MIT License · 基于上游开源项目 opencode 构建（全部移动端版别均为第三方移植）</p>
       </div>
       <nav class="footer-links" aria-label="页脚">
         <a href="https://github.com/fellow99/oc-desktop-ark" target="_blank" rel="noopener">
@@ -291,6 +361,10 @@
         </a>
         <a href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
           Electron on HarmonyOS Edition 仓库
+          <svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
+        </a>
+        <a href="https://github.com/fellow99/oc-desktop-android" target="_blank" rel="noopener">
+          Android Edition 仓库
           <svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M18 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7"></path></svg>
         </a>
         <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener">

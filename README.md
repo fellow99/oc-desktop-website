@@ -1,7 +1,8 @@
 # oc-desktop-website
 
-> **OC Desktop** 的产品官网（落地页）—— 统一呈现**两个**第三方鸿蒙版别：
-> [`oc-desktop-ark`](../oc-desktop-ark)（**HarmonyOS Edition**）与 [`oc-desktop-hos`](../oc-desktop-hos)（**Electron on HarmonyOS Edition**），并引用上游 **opencode** 官方桌面发行版。
+> **OC Desktop** 的产品官网（落地页）—— 统一呈现**三个**第三方移动版别：
+> [`oc-desktop-ark`](../oc-desktop-ark)（**HarmonyOS Edition**）、[`oc-desktop-hos`](../oc-desktop-hos)（**Electron on HarmonyOS Edition**）
+> 与 [`oc-desktop-android`](../oc-desktop-android)（**Android Edition**），并引用上游 **opencode** 官方桌面发行版。
 >
 > 预期线上地址：<https://fellow99.github.io/oc-desktop-website/>
 
@@ -31,18 +32,19 @@
 **OC Desktop = opencode 的桌面端。** 四大桌面平台，鸿蒙端**两个版别**：
 
 - **Windows / Linux / macOS**：使用**上游 opencode 官方发行版**（BETA）——本站只做引用与下载导流；
-- **HarmonyOS（2in1 / 平板）**：同一产品的**两个独立第三方版别**，品牌名统一为 **OC Desktop**：**HarmonyOS Edition**（[`oc-desktop-ark`](../oc-desktop-ark)，进程内 Node v24.2.0 + **ArkWeb**，无 Electron、无 Chromium）与 **Electron on HarmonyOS Edition**（[`oc-desktop-hos`](../oc-desktop-hos)，Electron 37 = Node 22.17.0 / Chromium 138）。
+- **HarmonyOS（2in1 / 平板）**：同一产品的**两个独立第三方版别**，品牌名统一为 **OC Desktop**：**HarmonyOS Edition**（[`oc-desktop-ark`](../oc-desktop-ark)，进程内 Node v24.2 + **ArkWeb**，无 Electron、无 Chromium）与 **Electron on HarmonyOS Edition**（[`oc-desktop-hos`](../oc-desktop-hos)，Electron 37 = Node 22 / Chromium 138）。
+- **Android（平板 / 折叠屏 / 桌面优先）**：**Android Edition**（[`oc-desktop-android`](../oc-desktop-android)，进程内 Node v24.2 + 系统 WebView，无自带内核）。
 
-两版同一上游基线 **v2.0.26**、同一份官方 Web UI、可同机共存；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md §一` 为准）。
+三版同一上游基线 **v2.1.2**、同一份官方 Web UI；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md` 与 `docs/能力对照清单.md` 为准）。
 
 **Hero 主标**：ZH「让 opencode 在桌面安家」· EN *"opencode, at home on the desktop"*。
-**四大桌面覆盖 + 双版别是首页头条差异点**：hero lede、`ul.os-strip` 四枚 chip（Windows / Linux / macOS / HarmonyOS）、CTA 的两个版别按钮、三张平台卡与免责声明都要出现。
+**多平台覆盖 + 三个移动版别是首页头条差异点**：hero lede、`ul.os-strip` 五枚 chip（Windows / Linux / macOS / HarmonyOS / Android）、CTA 的三个版别按钮、四张平台卡与免责声明都要出现。
 
 ### 2.2 卖点（特性卡）
 
 1. **上游 opencode，零改动** —— 官方 Web UI 与 agent 核心原样运行，只做幂等补丁。
 2. **进程内托管，同源加载** —— 服务端在应用内部启动，界面经本机端口同源加载：无 CORS、无云端中转、无账号。
-3. **为鸿蒙补齐的能力** —— 终端 PTY 与外部进程在鸿蒙不可得，改用纯 JS 工具覆盖 `shell` / `grep` / `glob`。
+3. **为移动平台补齐的能力** —— 终端 PTY 与外部进程在鸿蒙 / Android 不可得，改用纯 JS 工具覆盖 `shell` / `grep` / `glob`、Git 进程内运行。
 4. **克制的权限与品牌化** —— 只申请必要权限；界面、标题与图标统一为 OC Desktop。
 
 **实现原理（"How it works"）**：应用内启动服务端 → ArkWeb / Chromium 同源加载官方 Web UI →
@@ -69,29 +71,34 @@
   - 源码：<https://github.com/anomalyco/opencode/tree/v2>
   - 下载：<https://opencode.ai/zh/download>
 - **禁止编造能力**：不写「自动更新」「应用商店上架发行」「官方产品 / 与上游有隶属关系」；
-  必须写明两个鸿蒙版别都是**第三方移植**、Windows / Linux / macOS 版由**上游官方分发**。
-- **鸿蒙端的已知边界（两版相同）要如实写**（唯一一处诚实性硬要求）：终端 PTY、依赖外部进程的工具
-  （LSP / MCP / git）不可用；插件在线安装默认关闭；HarmonyOS Edition 另外不带 Chromium。
-- **两个版别的验证口径分开写、互不挪用**：
-  - **HarmonyOS Edition** 只写「**已构建 · host 侧门禁全绿 · 未签名 · 待真机**」（证据 `oc-desktop-ark/logs/20261018-1/DEV_CHECKLIST.md`；`TC-D-*` 全部未执行），**不得**写「真机验证通过」「已签名」「可安装」；
-  - **Electron on HarmonyOS Edition** 可写「**已构建 · 签名 · 真机安装启动 + 基本流程验证**」（`docs/鸿蒙环境能力清单-v2.0.26.md` §10 / §11.2），
-    但须同时承认 §5 的 ⬜-2 / ⬜-12 未取证、⬜-9 部分取证、`docs/真机验证记录.md` 仍是模板 —— **不得**写「全项真机验证通过」。
+  必须写明三个移动版别都是**第三方移植**、Windows / Linux / macOS 版由**上游官方分发**。
+- **移动端的已知边界（三版相同）要如实写**（唯一一处诚实性硬要求）：终端 PTY、本地 stdio MCP、依赖 spawn 外部进程的工具
+  （LSP 等）不可用；插件在线安装默认关闭；HarmonyOS Edition 另外不带 Chromium。
+- **能力对照栏目（`#capabilities`）**：以 `docs/能力对照清单.md` 为唯一事实源，落地页只放**简化矩阵**：
+  功能格只允许四种符号 **✅（已实现并实测）/ 🔶（部分、受限或待验）/ ⬜（未投放）/ ❌（平台不可得）**，
+  不写解释文字；矩阵下方一行图例 + 指向完整清单。三版列固定为 Android / HarmonyOS / Electron on HOS。
+- **三个版别的验证口径分开写、互不挪用**（事实源 `docs/能力对照清单.md` §0/§10）：
+  - **HarmonyOS Edition** 可写「**真机 5 轮验证**」（logs/20261018~20261022，HAD-W32）；
+  - **Electron on HarmonyOS Edition** 只写「**v2.0.26 真机验证；v2.1.2 构建完成、待真机**」（T08/T09 无 TEST_REPORT），**不得**写「v2.1.2 全项真机验证通过」；
+  - **Android Edition** 只写「**模拟器多轮 + 真机一轮功能测试**」，平台卡不得声称全项真机覆盖。
 - 产品事实变化时，**两套语言页 + 本文 §2 同时改**。
 
 ## 3. 页面结构
 
-两页共用一条纵向结构（6 个地标区块）：
+两页共用一条纵向结构（7 个地标区块）：
 
-1. **Nav**（`header.site-header`）：logo 字标 + `OC Desktop` 后缀 · 锚点链接（特性 / 平台 / 实现原理）·
+1. **Nav**（`header.site-header`）：logo 字标 + `OC Desktop` 后缀 · 锚点链接（特性 / 平台 / 能力对照 / 实现原理）·
    胶囊语言切换（`EN / 中文`）· 主题切换。≤ 760px 隐藏锚点链接，品牌 + 语言 + 主题保留。
-2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede（点明两个版别）、`ul.os-strip`（4 枚系统 chip）、
-   CTA 行（主：`OpenCode 官方下载` → 上游下载页；两个版别按钮：HarmonyOS Edition → `oc-desktop-ark`、Electron on HarmonyOS Edition → `oc-desktop-hos`；ghost：了解实现）、
-   可信行（**两个版别的版本与验证状态各一行** + Windows / Linux / macOS 上游分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption（标注 Electron on HarmonyOS Edition）。
+2. **Hero**（`section#top`）：左列——等宽 eyebrow chip、`<h1>`、lede（点明三个移动版别）、`ul.os-strip`（5 枚系统 chip）、
+   CTA 行（主：`OpenCode 官方下载` → 上游下载页；三个版别按钮：HarmonyOS Edition → `oc-desktop-ark`、Electron on HarmonyOS Edition → `oc-desktop-hos`、Android Edition → `oc-desktop-android`；ghost：了解实现）、
+   可信行（**三版统一基线 v2.1.2 一行** + Windows / Linux / macOS 上游分发口径）；右列——带边框的截图「应用窗口」（浅 / 深两张，纯 CSS 按主题切换，见 §4.3）+ 等宽 caption（标注 Electron on HarmonyOS Edition）。
 3. **Features**（`#features`）：标题 + lede + 4 张图标卡（桌面 2×2，≤ 820px 单列）。
-4. **Platforms**（`#platforms`）：**三张**卡 —— HarmonyOS Edition、Electron on HarmonyOS Edition、上游 Windows / Linux / macOS（标签 + 能力要点 + 链接），下方
-   免责声明（写明两个鸿蒙版别均为第三方移植）与鸿蒙端共同能力边界说明。
-5. **How it works**（`#how`）：3 个编号步骤 + 箭头连接，收尾一枚结果徽标。
-6. **Footer**：字标 + 一句话 + ©/许可行 + 相关链接（HarmonyOS Edition、Electron on HarmonyOS Edition、`@fellow99/node-bridge`、
+4. **Platforms**（`#platforms`）：**四张**卡 —— HarmonyOS Edition、Electron on HarmonyOS Edition、Android Edition、上游 Windows / Linux / macOS（标签 + 能力要点 + 链接），下方
+   免责声明（写明三个移动版别均为第三方移植）与移动端共同能力边界说明。
+5. **Capabilities**（`#capabilities`，`.section-alt`）：**能力对照清单**简化矩阵（四列：能力项 / Android / HarmonyOS / Electron on HOS），
+   功能格仅 ✅🔶⬜❌，末行渲染内核，下方图例 + 指向父工程 `docs/能力对照清单.md`。表格容器 `.table-wrap` 横向滚动。
+6. **How it works**（`#how`）：3 个编号步骤 + 箭头连接，收尾一枚结果徽标。
+7. **Footer**：字标 + 一句话 + ©/许可行 + 相关链接（HarmonyOS Edition、Electron on HarmonyOS Edition、Android Edition、`@fellow99/node-bridge`、
    上游 opencode v2 分支、上游下载页、harmonypc-electron、Electron）。
 
 中英两页必须**结构完全一致** —— 区块顺序、元素 class、交互行为不得分叉，只有文案被翻译。
@@ -197,4 +204,5 @@ npx serve .        # 然后访问 http://localhost:3000/index_zh.html
 - [ ] 离线自检：`file://` 打开两页，控制台无报错、无网络请求。
 - [ ] 视觉自检：1280 / 768 / 390 三个宽度 × 明暗两套主题。
 - [ ] 事实自检：本文 §2.4 的护栏仍成立（尤其「不写官方隶属、不写未取证的真机结论、两版验证口径不互借」）。
-- [ ] 版别自检：两页 + 本文 §2 + 父工程 `README.md §一` 用同一组名字 —— **HarmonyOS Edition**（`oc-desktop-ark`）/ **Electron on HarmonyOS Edition**（`oc-desktop-hos`），不混称「鸿蒙版」。
+- [ ] 版别自检：两页 + 本文 §2 + 父工程 `README.md` 用同一组名字 —— **HarmonyOS Edition**（`oc-desktop-ark`）/ **Electron on HarmonyOS Edition**（`oc-desktop-hos`）/ **Android Edition**（`oc-desktop-android`），不混称「鸿蒙版」。
+- [ ] 能力矩阵自检：与 `docs/能力对照清单.md` §10 一致，功能格只有 ✅🔶⬜❌ 四种符号，三版列齐全。

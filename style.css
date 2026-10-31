@@ -537,6 +537,66 @@ html[data-theme="dark"] .icon-btn .i-moon {
   text-underline-offset: 3px;
 }
 
+/* ----------------------------------------------------------- capability */
+.section-alt {
+  background: var(--surface);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+}
+.cap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  min-width: 480px;
+}
+.cap-table th,
+.cap-table td {
+  padding: 0.62rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+.cap-table th:first-child,
+.cap-table td:first-child {
+  white-space: normal;
+}
+.cap-table thead th {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+}
+.cap-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.cap-table tbody tr:hover {
+  background: var(--accent-soft);
+}
+.cap-table td:not(:first-child) {
+  text-align: center;
+  font-size: 1rem;
+}
+.cap-table th:not(:first-child) {
+  text-align: center;
+}
+.cap-legend {
+  margin-top: 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
 /* supported-platform strip — the "four desktops" emphasis under the lede */
 .os-strip {
   display: flex;
