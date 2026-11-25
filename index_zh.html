@@ -183,7 +183,7 @@
               <li><strong>不带 Electron、不带 Chromium</strong>：Node v24.2 在<strong>应用进程内</strong>经 <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a>（<code>dlopen</code> + <code>node::Start</code>）运行</li>
               <li>ArkWeb 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载官方 Web UI</li>
               <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 凭据不出设备</li>
-              <li>5 条幂等补丁 · 默认 jitless compat 形态 · 已完成 5 轮真机验证</li>
+              <li>3 条幂等补丁 · 默认 jitless compat 形态 · 2.4.1 host 门禁全绿（真机待验证）</li>
               <li>载荷经 resfile 只读直读 · 真机 <code>/api/info</code> + SPA + SSE 全绿</li>
             </ul>
             <div class="platform-actions">
@@ -205,7 +205,7 @@
               <li>官方 Web UI 前端 100% 复用，同源加载，完整品牌化</li>
               <li>端侧数据目录映射 + SQLite 会话持久化（better-sqlite3）</li>
               <li>纯 JS 鸿蒙工具：覆盖 <code>shell</code>、<code>grep</code>、<code>glob</code></li>
-              <li>6 条幂等补丁 · 2.4.1 host 门禁全绿（host 冒烟 + 品牌断言）；真机待验证</li>
+              <li>6 条幂等补丁 · 2.4.1 host 门禁全绿（host 冒烟 + 37 项品牌断言）；真机待验证</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
@@ -226,7 +226,7 @@
               <li>官方 Web UI 从 <code>127.0.0.1:&lt;随机端口&gt;</code> 同源加载，完整品牌化（标题 / 图标 / 关于页）</li>
               <li>SQLite 会话（<code>node:sqlite</code>）落在应用沙箱 · 仅 loopback 放行明文 · 凭据不出设备</li>
               <li>四个进程内插件：Git、搜索、工作区根（SAF 导入）与 <strong>pnpm</strong></li>
-              <li>7 条幂等补丁 · 运行时 16KB 页对齐 · CI 打 <code>v*</code> tag 即发 APK Release</li>
+              <li>6 条幂等补丁 · 运行时 16KB 页对齐 · CI 打 <code>v*</code> tag 即发 APK Release</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-android" target="_blank" rel="noopener">

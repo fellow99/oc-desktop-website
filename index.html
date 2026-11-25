@@ -102,7 +102,7 @@
             </a>
           </div>
           <p class="trust">
-            Three mobile editions, one baseline <strong>opencode v2.4.1</strong> · app version <strong>2.4.1</strong> · <strong>HarmonyOS Edition</strong> — in-process Node v24.2 + ArkWeb, no Electron · <strong>Electron on HarmonyOS Edition</strong> — Electron 37 · <strong>Android Edition</strong> — in-process Node v24.2 + system WebView
+            Three mobile editions, one baseline <strong>opencode v2.4.1</strong> · app version <strong>2.4.1</strong> · <strong>HarmonyOS Edition</strong> — in-process Node v24.2 + ArkWeb, no Electron · <strong>Electron on HarmonyOS Edition</strong> — Electron 37 · <strong>Android Edition</strong> — in-process Node 26.13 + system WebView
             <br>
             Windows / Linux / macOS are distributed by upstream <a href="https://github.com/anomalyco/opencode/tree/v2" target="_blank" rel="noopener">opencode</a> (BETA) · downloads and source point at the official channels
           </p>
@@ -183,7 +183,7 @@
               <li><strong>No Electron, no Chromium</strong>: Node v24.2.0 runs <strong>inside the app process</strong> via <a href="https://github.com/fellow99/ohos-node-bridge" target="_blank" rel="noopener"><code>@fellow99/node-bridge</code></a> (<code>dlopen</code> + <code>node::Start</code>)</li>
               <li>ArkWeb loads the official Web UI same-origin from <code>127.0.0.1:&lt;random port&gt;</code></li>
               <li>SQLite sessions (<code>node:sqlite</code>) in the app sandbox · credentials never leave the device</li>
-              <li>Node v24.2 · 5 idempotent patches · jitless compat build by default · 5 rounds of real-device verification</li>
+              <li>Node v24.2 · 3 idempotent patches · jitless compat build by default · 2.4.1 host gates green (on-device pending)</li>
               <li>Payload served read-only from resfile · <code>/api/info</code> + SPA + SSE green on device</li>
             </ul>
             <div class="platform-actions">
@@ -205,7 +205,7 @@
               <li>The official Web UI frontend is reused 100%, loaded same-origin, fully branded</li>
               <li>On-device data directory mapping + SQLite session persistence (better-sqlite3)</li>
               <li>Plain-JS HarmonyOS tools: <code>shell</code>, <code>grep</code>, <code>glob</code></li>
-              <li>6 idempotent patches · 2.4.1 host gates green (host smoke + branding); on-device pending</li>
+              <li>6 idempotent patches · 2.4.1 host gates green (host smoke + 37 branding assertions); on-device pending</li>
             </ul>
             <div class="platform-actions">
               <a class="repo-link" href="https://github.com/fellow99/oc-desktop-hos" target="_blank" rel="noopener">
