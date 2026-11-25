@@ -35,7 +35,7 @@
 - **HarmonyOS（2in1 / 平板）**：同一产品的**两个独立第三方版别**，品牌名统一为 **OC Desktop**：**HarmonyOS Edition**（[`oc-desktop-ark`](../oc-desktop-ark)，进程内 Node v24.2 + **ArkWeb**，无 Electron、无 Chromium）与 **Electron on HarmonyOS Edition**（[`oc-desktop-hos`](../oc-desktop-hos)，Electron 37 = Node 22 / Chromium 138）。
 - **Android（平板 / 折叠屏 / 桌面优先）**：**Android Edition**（[`oc-desktop-android`](../oc-desktop-android)，进程内 Node v24.2 + 系统 WebView，无自带内核）。
 
-三版同一上游基线 **v2.2.5**、同一份官方 Web UI；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md` 与 `docs/能力对照清单.md` 为准）。
+三版同一上游基线 **v2.4.1**、同一份官方 Web UI；差异只在「谁提供 Node、谁渲染」（口径以父工程 `README.md` 与 `docs/能力对照清单.md` 为准）。
 
 **Hero 主标**：ZH「让 opencode 在桌面安家」· EN *"opencode, at home on the desktop"*。
 **多平台覆盖 + 三个移动版别是首页头条差异点**：hero lede、`ul.os-strip` 五枚 chip（Windows / Linux / macOS / HarmonyOS / Android）、CTA 的三个版别按钮、四张平台卡与免责声明都要出现。
